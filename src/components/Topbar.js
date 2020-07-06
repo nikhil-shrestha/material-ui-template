@@ -28,6 +28,9 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     display: 'none',
+    '&.MuiTypography-noWrap': {
+      overflow: 'visible',
+    },
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
@@ -44,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
-      width: 'auto',
     },
   },
   searchIcon: {
