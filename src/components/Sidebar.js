@@ -37,6 +37,7 @@ export default function ClippedDrawer(props) {
   return (
     <Drawer
       className={classes.drawer}
+      variant={!matchesSM ? 'persistent' : null}
       anchor="left"
       open={sidebarOpen}
       classes={{
