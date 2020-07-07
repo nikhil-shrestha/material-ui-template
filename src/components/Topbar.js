@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { fade, makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -93,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PrimarySearchAppBar(props) {
   const classes = useStyles();
+  const ref = useRef(null);
 
   const { sidebarOpen, handleDrawerOpen, handleDrawerClose } = props;
 
@@ -206,15 +207,23 @@ export default function PrimarySearchAppBar(props) {
           </Typography>
           <div className={classes.search}>
             <Autocomplete
+              openOnFocus //<---here
+              clearOnBlur //<---here
               freeSolo
               id="free-solo-2-demo"
               disableClearable
               options={top100Films.map((option) => option.title)}
               renderInput={(params) => (
                 <TextField
+                  inputRef={ref} //<---here
                   {...params}
+                  onClick={(e) => {
+                    handleDrawerClose(); //<---here
+                    setTimeout(() => ref.current.focus()); //<---here
+                  }}
                   placeholder="Search input"
                   margin="dense"
+                  color="secondary"
                   classes={{
                     root: classes.textField,
                   }}
